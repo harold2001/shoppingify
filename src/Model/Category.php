@@ -1,11 +1,12 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"] . "/connection.php");
 
 class Category
 {
     public function all()
     {
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/connection.php");
-        $stmt = $pdo->query("SELECT * FROM categories");
+        $connection = new DB();
+        $stmt = $connection->pdo->query("SELECT * FROM categories");
         $categories = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {

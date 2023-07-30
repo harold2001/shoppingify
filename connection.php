@@ -12,18 +12,30 @@ if (file_exists($envFile)) {
     die(".env file not found");
 }
 
-// Try the connection and catch the error.
-try {
-    $host = $_ENV["DB_HOST"];
-    $username = $_ENV["DB_USERNAME"];
-    $password = $_ENV["DB_PASSWORD"];
-    $dbname = $_ENV["DB_DATABASE"];
-    $port = $_ENV["DB_PORT"];
-    $attributes = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
+class DB
+{
+    public $pdo;
 
-    $dsn = "mysql:host=$host;port=$port;dbname=$dbname";
+    public function __construct()
+    {
+        // Try the connection and catch the error.
+        try {
+            $host = $_ENV["DB_HOST"];
+            $username = $_ENV["DB_USERNAME"];
+            $password = $_ENV["DB_PASSWORD"];
+            $dbname = $_ENV["DB_DATABASE"];
+            $port = $_ENV["DB_PORT"];
+            $attributes = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
 
-    $pdo = new PDO($dsn, $username, $password, $attributes);
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+            $dsn = "mysql:host=$host;port=$port;dbname=$dbname";
+            $this->pdo = new PDO($dsn, $username, $password, $attributes);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function disconnect()
+    {
+        $this->pdo = null;
+    }
 }

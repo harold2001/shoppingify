@@ -10,9 +10,6 @@
 
 <body>
     <h1 class="text-3xl">Shoppingify</h1>
-    <?php
-    var_dump($categorias);
-    ?>
 </body>
 
 </html>
