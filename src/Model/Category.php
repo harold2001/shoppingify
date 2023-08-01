@@ -7,6 +7,7 @@ class Category
     {
         $connection = new DB();
         $stmt = $connection->pdo->query("SELECT * FROM categories");
+        $connection->disconnect();
         $categories = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
