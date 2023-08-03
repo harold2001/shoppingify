@@ -12,7 +12,17 @@ class ListnameProduct
 
     public function all()
     {
-        $query = "select * from listname_products lp inner join products p on lp.product_id = p.id_product inner join listnames l on lp.listname_id = l.id_listname";
+        $query = "
+        select
+            *
+        from 
+            listname_products lp
+        inner join products p on
+            lp.product_id = p.id_product
+        inner join listnames l on
+            lp.listname_id = l.id_listname
+        ";
+
         $stmt = $this->connection->pdo->query($query);
         $rows = [];
 

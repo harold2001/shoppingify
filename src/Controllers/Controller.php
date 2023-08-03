@@ -1,6 +1,7 @@
 <?php
-require($_SERVER["DOCUMENT_ROOT"] . "/src/Model/Category.php");
-require($_SERVER["DOCUMENT_ROOT"] . "/src/Model/Listname.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/src/Model/Category.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/src/Model/Listname.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/src/Model/ListnameProduct.php");
 // require($_SERVER["DOCUMENT_ROOT"] . "/connection.php");
 
 
@@ -8,12 +9,10 @@ class Controller
 {
     public function index()
     {
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/src/Model/ListnameProduct.php");
         $listnameProduct = new ListnameProduct();
-        $listnameProducts = $listnameProduct->where(2);
 
-        $obj2 = new Listname();
-        $listnames = $obj2->all();
+        $listname = new Listname();
+        $listnames = $listname->all();
 
         $sorted = [];
 
@@ -22,5 +21,9 @@ class Controller
             $sorted[$listname["name_listname"]] = $listnameProducts;
         }
         include $_SERVER["DOCUMENT_ROOT"] . "/src/view/home.php";
+    }
+
+    public function create() {
+        var_dump($_POST);
     }
 }

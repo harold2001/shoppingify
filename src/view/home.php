@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/src/output.css" rel="stylesheet">
-    <script src="/public/js/main.js" defer></script>
+    <script src="/public/js/home.js" defer></script>
     <title>Shoppingify</title>
 </head>
 
@@ -22,7 +22,7 @@
                         ?>
                             <a href="#" class="w-[47%] bg-white p-3 rounded-xl flex justify-center items-center gap-2 shadow-[0_2px_12px_0_rgba(0,0,0,0.05)]">
                                 <span><?= $lp["name_product"] ?></span>
-                                <img src="/src/assets/img/plus.svg" alt="Plus" class="h-[24px] text-gray-300">
+                                <input type="image" name="image" src="/src/assets/img/plus.svg" class="btnsPlus h-[24px] text-gray-300" value="<?= $lp["id_product"] ?>">
                             </a>
                         <?php
                         }
@@ -32,45 +32,46 @@
             <?php
             } ?>
         </section>
-        <section class="fixed top-0 h-screen w-[80%] overflow-hidden bg-[#e6d8c8] px-4 pt-6 pb-24 flex flex-col gap-6">
+        <section class="fixed top-0 h-screen overflow-hidden bg-[#e6d8c8] pt-6 pb-24 flex flex-col gap-6" id="cart" style="transition: all .5s; width: 0;">
 
-            <div class="bg-[#80485B] rounded-3xl flex w-full justify-center items-center px-4">
-                <div class="w-[40%] ">
-                    <img src="/src/assets/img/bottle.svg" alt="Bottle" class="relative bottom-5">
-                </div>
-                <div class="w-[60%] flex flex-col gap-3">
-                    <p class="text-white">Didn't find what you need?</p>
-                    <div>
-                        <button class="bg-white text-black rounded-2xl py-2 px-5">Add item</button>
+            <div class="px-4">
+                <div class="bg-[#80485B] rounded-3xl flex w-full justify-center items-center px-4">
+                    <div class="w-[40%] ">
+                        <img src="/src/assets/img/bottle.svg" alt="Bottle" class="relative bottom-5">
+                    </div>
+                    <div class="w-[60%] flex flex-col gap-3">
+                        <p class="text-white">Didn't find what you need?</p>
+                        <div>
+                            <button class="bg-white text-black rounded-2xl py-2 px-5">Add item</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <h2 class="text-3xl font-semibold">Shopping list</h2>
-            <form action="#" method="post">
+            <h2 class="text-3xl font-semibold px-4">Shopping list</h2>
+            <form action="?action=create_listnameProduct" method="post" id="formCreate" class="px-4">
                 <div class="flex flex-col gap-5">
                     <h4 class="text-[#828282]">Fruits and vegetables</h4>
                     <div class="flex justify-between">
-                        <input type="text" readonly name="products[0][product]" value="1" hidden>
+                        <input type="text" readonly name="products[0][product_id]" value="1" hidden>
                         <label for="#">Acocado</label>
-                        <input type="text" readonly name="products[0][pieces]" value="3" class="bg-transparent text-end w-[30%]">
+                        <input type="text" readonly name="products[0][pieces]" value="3" class="bg-transparent w-[30%] border-2 border-[#F9A109] text-[#F9A109] rounded-3xl text-center py-1 px-3">
                     </div>
 
                     <div class="flex justify-between">
                         <label for="#">Pre-cooked corn 450g</label>
-                        <input type="text" readonly name="products[1][product]" value="1" hidden>
-                        <input type="text" readonly name="products[1][pieces]" value="3">
+                        <input type="text" readonly name="products[1][product_id]" value="1" hidden>
+                        <input type="text" readonly name="products[1][pieces]" value="3" class="bg-transparent w-[30%] border-2 border-[#F9A109] text-[#F9A109] rounded-3xl text-center py-1 px-3">
                     </div>
                 </div>
             </form>
-            <div class="h-[13%] bg-white absolute bottom-0 left-0 right-0">
-                <div>
-                    <input type="text" name="listname">
-                    <button type="submit">Save</button>
+            <div class="h-[13%] bg-white absolute bottom-0 left-0 right-0 p-4">
+                <div class="h-full relative">
+                    <input type="text" name="listname" class="border-2 border-[#F9A109] h-full rounded-xl w-full">
+                    <button type="submit" class="bg-[#F9A109] h-full w-[30%] text-white rounded-xl text-xl font-semibold absolute right-0 top-0 bottom-0" id="btnSubmit">Save</button>
                 </div>
             </div>
         </section>
     </main>
-
 </body>
 
 </html>
